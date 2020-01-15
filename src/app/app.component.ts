@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeywordsModel } from './scraper/keywords.model';
 
 @Component({
   selector: 'app-root',
