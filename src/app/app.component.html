@@ -1,56 +1,83 @@
-<div id="bg">
-  <img src="src/rubyImage.png" alt="">
-</div>
-<div class="header">
-  <ul>
-    <li><a href="default.asp">Refresh</a></li>
-  </ul>
-</div>
-<div class="scraperBody">
-  <div style="text-align:left">
-    <h1>
-      {{ title }}
-    </h1>
-    <h3>
-      Search for tests using keyword(s)
-    </h3>
-  </div>
-  <div>
-    <table>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form">
-            <input class="form-control" type="search" id="search1" aria-label="Search" placeholder="search">
-            <label for="search1"></label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form">
-            <input class="form-control" type="search" id="search2" aria-label="Search" placeholder="search">
-            <label for="search2"></label>
-          </div>
-        </div>
-      </div>
-    </table>
-    <button (click)="sendKeywordsToScraper()">Scrape Tests</button>
-  </div>
-  <div class="form">
-    <h3> Results from Keyword Test Scrape </h3>
-    <div class="col-md-6">
-      <div class="form">
-        <input class="form-control-results" type="search" id="results" aria-label="results-field" placeholder="Results...">
-      </div>
+<div class="scraper-base">
+    <div class="header">
+      <header>
+        <a href="default.asp">Refresh</a>
+        <img src="mcImage.png">
+      </header>
     </div>
-  </div>
-  <button class="copyButton" (click)="copyTestResults()">Copy Results</button>
+    <div class="scraper-body">
+      <div style="text-align:left">
+        <h1>
+          {{ title }}
+        </h1>
+        <h3>
+          Search for tests containing keywords
+        </h3>
+      </div>
+      <div>
+        <table>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form">
+                <input class="form-control"
+                       type="search" id="search1"
+                       aria-label="Search"
+                       placeholder="keyword">
+                <label for="search1"></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form">
+                <input class="form-control"
+                       type="search"
+                       id="search2"
+                       aria-label="Search"
+                       placeholder="second keyword">
+                <label for="search2"></label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <form ngForm>
+              <input type="checkbox"
+                     name="validationTests"
+                     value="false"
+                     id="validationTests"> I want to search Validation Tests<br>
+              <input type="checkbox"
+                     name="functionalTests"
+                     value="false"
+                     id="functionalTests"> I want to search Functional Tests<br>
+              <input type="checkbox"
+                     name="test-paths"
+                     value="false"
+                     id="testPaths"> I want paths compatible with test runner config<br><br>
+            </form>
+          </div>
+        </table>
+        <button (click)="sendKeywordsToScraper()">Search for Tests</button>
+      </div>
+      <div class="form">
+        <h3> Results from Keyword Search</h3>
+        <div class="col-md-6">
+          <div class="form">
+                <label id='total-tests'> Total tests found using keywords: {{testList.length}}
+                </label>
+          </div>
+          <div class="results-box">
+                <textarea rows="13" cols="100" id='results' style="margin: 0px; width: 570px; height: 180px;" placeholder="Results..." [value]="testList">
+                </textarea>
+          </div>
+      </div>
+      </div>
+      <button class="copy-button" (click)="copyTestResults()">Copy Results</button>
+    </div>
+    <div class="footer">
+      <footer>
+        <!--        -->
+      </footer>
+    </div>
 </div>
-<div class="footer">
-  <footer>
-    Scraper Footer
-  </footer>
-</div>
-<router-outlet></router-outlet>
 
 
