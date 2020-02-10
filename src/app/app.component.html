@@ -10,9 +10,7 @@
         <h1>
           {{ title }}
         </h1>
-        <h3>
-          Search for tests containing keywords
-        </h3>
+        <h3>Search for tests using keyword(s)</h3>
       </div>
       <div>
         <table>
@@ -37,7 +35,7 @@
                        type="search"
                        id="search2"
                        aria-label="Search"
-                       placeholder="second keyword">
+                       placeholder="optional keyword">
                 <label for="search2"></label>
               </div>
             </div>
@@ -46,11 +44,11 @@
             <form ngForm>
               <input [(ngModel)]="validation"
                      type="checkbox"
-                     name="validationTests"
+                     name="validation-tests"
                      id="validationTests"> I want to search Validation Tests<br>
               <input [(ngModel)]="functional"
                      type="checkbox"
-                     name="functionalTests"
+                     name="functional-tests"
                      id="functionalTests"> I want to search Functional Tests<br>
               <input [(ngModel)]="testPaths"
                      type="checkbox"
@@ -62,20 +60,21 @@
         <button class="main-buttons" (click)="sendKeywordsToScraper()">Search for Tests</button>
       </div>
       <div class="form">
-        <h3> Results from Keyword Search</h3>
+        <h3>Results from Keyword Search</h3>
         <div class="col-md-6">
           <div class="form">
-                <label id='total-tests'> Total tests found using keywords: {{testList.length}}
+                <label id='total-tests'> Total tests found using keyword(s): {{testList.length}}
                 </label>
           </div>
           <div class="results-box">
-                <textarea rows="13"
+                <textarea [value]="testList"
+                          rows="13"
                           cols="100"
                           id='results'
                           style="margin: 0px;
                           width: 570px;
                           height: 180px;"
-                          placeholder="Results..." [value]="testList">
+                          placeholder="Results...">
                 </textarea>
           </div>
       </div>

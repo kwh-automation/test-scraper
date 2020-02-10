@@ -23,6 +23,7 @@ export class AppComponent {
     let functionalString;
     let testPathString;
 
+    // Passing all params as strings, so need to convert here
     if (this.validation) {
       validationString = 'true';
     } else {
@@ -38,8 +39,12 @@ export class AppComponent {
     } else {
       testPathString = 'false';
     }
-    const keywords: string[] = [this.keyword, this.keywordTwo, validationString, functionalString, testPathString];
-    this.scraperService.getKeywords(keywords).subscribe(lst => this.testList = lst);
+    // In case second keyword is blank
+    if (this.keywordTwo === '') {
+      this.keywordTwo = ' ';
+    }
+    const parameters: string[] = [this.keyword, this.keywordTwo, validationString, functionalString, testPathString];
+    this.scraperService.getKeywords(parameters).subscribe(lst => this.testList = lst);
   }
 
   copyTestResults() {
