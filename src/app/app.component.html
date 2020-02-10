@@ -19,8 +19,10 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form">
-                <input class="form-control"
-                       type="search" id="search1"
+                <input [(ngModel)]="keyword"
+                       class="form-control"
+                       type="search"
+                       id="search1"
                        aria-label="Search"
                        placeholder="keyword">
                 <label for="search1"></label>
@@ -30,7 +32,8 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form">
-                <input class="form-control"
+                <input [(ngModel)]="keywordTwo"
+                       class="form-control"
                        type="search"
                        id="search2"
                        aria-label="Search"
@@ -41,22 +44,22 @@
           </div>
           <div class="row">
             <form ngForm>
-              <input type="checkbox"
+              <input [(ngModel)]="validation"
+                     type="checkbox"
                      name="validationTests"
-                     value="false"
                      id="validationTests"> I want to search Validation Tests<br>
-              <input type="checkbox"
+              <input [(ngModel)]="functional"
+                     type="checkbox"
                      name="functionalTests"
-                     value="false"
                      id="functionalTests"> I want to search Functional Tests<br>
-              <input type="checkbox"
+              <input [(ngModel)]="testPaths"
+                     type="checkbox"
                      name="test-paths"
-                     value="false"
-                     id="testPaths"> I want paths compatible with test runner config<br><br>
+                     id="testPaths"> I want paths compatible with test runner config<br>
             </form>
           </div>
         </table>
-        <button (click)="sendKeywordsToScraper()">Search for Tests</button>
+        <button class="main-buttons" (click)="sendKeywordsToScraper()">Search for Tests</button>
       </div>
       <div class="form">
         <h3> Results from Keyword Search</h3>
@@ -66,12 +69,18 @@
                 </label>
           </div>
           <div class="results-box">
-                <textarea rows="13" cols="100" id='results' style="margin: 0px; width: 570px; height: 180px;" placeholder="Results..." [value]="testList">
+                <textarea rows="13"
+                          cols="100"
+                          id='results'
+                          style="margin: 0px;
+                          width: 570px;
+                          height: 180px;"
+                          placeholder="Results..." [value]="testList">
                 </textarea>
           </div>
       </div>
       </div>
-      <button class="copy-button" (click)="copyTestResults()">Copy Results</button>
+      <button class="main-buttons" (click)="copyTestResults()">Copy Results</button>
     </div>
     <div class="footer">
       <footer>

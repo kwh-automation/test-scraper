@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { KeywordsModel } from './scraper/keywords.model';
 import {ScraperService} from './scraper/scraper.service';
 
 @Component({
@@ -12,25 +11,34 @@ export class AppComponent {
 
   }
   title = 'Ruby Test Scraper';
-  Results: any;
   testList: string[] = [];
-  user: any;
-
-  validationBoxChecked() {
-    const validationCheckbox = (document.getElementById('validation-tests').getAttribute('ng-model'));
-    if (validationCheckbox) {
-      console.log(true);
-      return true;
-    } else {
-      return false;
-    }
-  }
+  keyword = '';
+  keywordTwo = '';
+  validation = true;
+  functional = true;
+  testPaths = false;
 
   sendKeywordsToScraper() {
-    const keyword = (<HTMLInputElement> document.getElementById('search1')).value;
-    const keywordTwo = (<HTMLInputElement> document.getElementById('search2')).value;
-    const keywords: string[] = [keyword, keywordTwo];
-    console.log(keywords);
+    let validationString;
+    let functionalString;
+    let testPathString;
+
+    if (this.validation) {
+      validationString = 'true';
+    } else {
+      validationString = 'false';
+    }
+    if (this.functional) {
+      functionalString = 'true';
+    } else {
+      functionalString = 'false';
+    }
+    if (this.testPaths) {
+      testPathString = 'true';
+    } else {
+      testPathString = 'false';
+    }
+    const keywords: string[] = [this.keyword, this.keywordTwo, validationString, functionalString, testPathString];
     this.scraperService.getKeywords(keywords).subscribe(lst => this.testList = lst);
   }
 
