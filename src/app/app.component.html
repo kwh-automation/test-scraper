@@ -41,23 +41,27 @@
             </div>
           </div>
           <div class="row">
-            <form ngForm>
-              <input [(ngModel)]="validation"
-                     type="checkbox"
-                     name="validation-tests"
-                     id="validationTests"> I want to search Validation Tests<br>
-              <input [(ngModel)]="functional"
-                     type="checkbox"
-                     name="functional-tests"
-                     id="functionalTests"> I want to search Functional Tests<br>
-              <input [(ngModel)]="testPaths"
-                     type="checkbox"
-                     name="test-paths"
-                     id="testPaths"> I want paths compatible with test runner config<br>
-            </form>
+            <div class="checkbox-container">
+              <form ngForm>
+                <input [(ngModel)]="validation"
+                       type="checkbox"
+                       name="validation-tests"
+                       id="validationTests"> I want to search Validation Tests<br>
+                <input [(ngModel)]="functional"
+                       type="checkbox"
+                       name="functional-tests"
+                       id="functionalTests"> I want to search Functional Tests<br>
+                <input [(ngModel)]="testPaths"
+                       type="checkbox"
+                       name="test-paths"
+                       id="testPaths"> I want paths compatible with test runner config<br>
+              </form>
+            </div>
           </div>
         </table>
-        <button class="main-buttons" (click)="sendKeywordsToScraper()">Search for Tests</button>
+        <div class="button-container">
+          <button class="main-buttons" (click)="sendKeywordsToScraper()">Search for Tests</button>
+        </div>
       </div>
       <div class="form">
         <h3>Results from Keyword Search</h3>
