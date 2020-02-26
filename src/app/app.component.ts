@@ -10,7 +10,6 @@ export class AppComponent {
   constructor(private scraperService: ScraperService) {
 
   }
-  title = 'Ruby Test Scraper';
   testList: string[] = [];
   keyword = '';
   keywordTwo = '';
@@ -23,7 +22,6 @@ export class AppComponent {
     let functionalString;
     let testPathString;
 
-    // Passing all params as strings, so need to convert here
     if (this.validation) {
       validationString = 'true';
     } else {
@@ -39,11 +37,12 @@ export class AppComponent {
     } else {
       testPathString = 'false';
     }
-    // In case second keyword is blank
-    if (this.keywordTwo === '') {
-      this.keywordTwo = ' ';
+
+    let keywordSub = this.keywordTwo;
+    if (keywordSub === '') {
+      keywordSub = ' ';
     }
-    const parameters: string[] = [this.keyword, this.keywordTwo, validationString, functionalString, testPathString];
+    const parameters: string[] = [this.keyword, keywordSub, validationString, functionalString, testPathString];
     this.scraperService.getKeywords(parameters).subscribe(lst => this.testList = lst);
   }
 
